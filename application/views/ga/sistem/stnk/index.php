@@ -55,13 +55,13 @@
 							<th>No</th>
 							<th>Plat Nomor</th>
 							<th>Merk</th>
-							<th>Nomor Rangka</th>
 							<th>Nomor Mesin</th>
 							<th>Nominal Pajak</th>
 							<th>Nama Pemilik</th>
 							<th>Alamat</th>
 							<th>Tahun Registrasi</th>
 							<th>Berlaku S/d</th>
+							<th>Foto Kendaraan</th>
 							<th>Action</th>
 
 
@@ -76,13 +76,14 @@
 									<td><?php echo $no; ?></td>
 									<td><?php echo $tampil['nomor_registrasi']; ?></td>
 									<td><?php echo $tampil['merk']; ?></td>
-									<td><?php echo $tampil['nomor_rangka']; ?></td>
 									<td><?php echo $tampil['nomor_mesin']; ?></td>
 									<td><?php echo $tampil['nominal']; ?></td>
 									<td><?php echo $tampil['nama_pemilik']; ?></td>
 									<td><?php echo $tampil['alamat']; ?></td>
 									<td><?php echo $tampil['tahun_pembuatan']; ?></td>
 									<td><?php echo $tampil['berlaku_sampai']; ?></td>
+									<td><a href="<?= base_url() . 'assets/img/gambar_kendaraan/' . $tampil['gambar_kendaraan']; ?>" target="_blank"><img src="<?= base_url() . 'assets/img/gambar_kendaraan/' . $tampil['gambar_kendaraan']; ?>" width="200"></a></td>
+
 
 
 									<td>

@@ -22,7 +22,7 @@
 
 				<div id="form_sample_2" class="form-horizontal">
 
-					<?php echo form_open('ga/stnk_simpan/', 'class="form-horizontal"'); ?>
+					<?php echo form_open_multipart('ga/stnk_simpan/', 'class="form-horizontal"'); ?>
 
 
 					<div class="control-group">
@@ -256,6 +256,15 @@
 							<input type="text" name="kode_lokasi" id="kode_lokasi" class="span6 m-wrap" placeholder="Kode Lokasi..." />
 						</div>
 					</div>
+
+					<div class="control-group">
+						<label class="control-label">Foto Kendaraan</label>
+						<div class="controls">
+							<input type="file" name="gambar_kendaraan" id="gambar_kendaraan" class="span6 m-wrap" />
+						</div>
+					</div>
+
+
 
 					<!-- <div class="control-group">
 										<label class="control-label">Nomor Urut Pendaftaran</label>

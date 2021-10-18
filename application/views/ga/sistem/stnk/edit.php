@@ -13,7 +13,7 @@
 
 				<div id="form_sample_2" class="form-horizontal">
 
-					<?php echo form_open('ga/stnk_update/', 'class="form-horizontal"'); ?>
+					<?php echo form_open_multipart('ga/stnk_update/', 'class="form-horizontal"'); ?>
 					<input type="hidden" name='id_ga_stnk' value="<?php echo $id_ga_stnk; ?>">
 
 
@@ -256,7 +256,12 @@
 								<input type="text" name="no_urut_pendaftaran" id="no_urut_pendaftaran" class="span6 m-wrap" value="<?php echo $no_urut_pendaftaran; ?>" />
 							</div>
 						</div>
-
+						<div class="control-group">
+							<label class="control-label">Foto Kendaraan</label>
+							<div class="controls">
+								<input type="file" name="gambar_kendaraan" id="gambar_kendaraan" class="span6 m-wrap" value="<?= base_url() . 'assets/img/gambar_kendaraan/' . $gambar_kendaraan ?>" />
+							</div>
+						</div>
 
 
 
@@ -265,6 +270,8 @@
 							<a href="<?php echo base_url(); ?>ga/stnk" class="btn white"><i class="icon-long-arrow-left"></i> Kembali</a>
 
 						</div>
+
+
 						<?php echo form_close(); ?>
 					</div>
 

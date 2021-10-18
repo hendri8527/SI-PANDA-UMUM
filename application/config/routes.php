@@ -41,7 +41,7 @@
 $route['default_controller'] = "ga/index";
 $route['loginMe'] = 'login/loginMe';
 $route['dashboard'] = 'ga/home';
-$route['logout'] = 'Users/logout';
+$route['logout'] = 'ga/logout';
 $route['404_override'] = '';
 
 

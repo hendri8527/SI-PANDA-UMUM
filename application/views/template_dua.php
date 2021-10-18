@@ -270,7 +270,7 @@
           </a>
         </li>
         <li>
-          <a href="<?php echo base_url(); ?>logout"><i class="fa fa-sign-out"></i> Sign out</a>
+          <a href="<?php echo base_url(); ?>ga/logout"><i class="fa fa-sign-out"></i> Sign out</a>
 
         </li>
 
