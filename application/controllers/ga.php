@@ -7,7 +7,11 @@ class ga extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->model('ga_model');
+
+		// if(!$this->session->userdata('isLoggedin')){
+		// 	echo "error";}
 		$this->load->helper(array('form', 'url'));
+
 	}
 
 	public function index()
