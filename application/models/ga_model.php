@@ -48,6 +48,8 @@ class ga_model extends CI_Model
 		return $this->db->query("delete from tbl_ga_stnk where id_ga_stnk='$id_ga_stnk'");
 	}
 
+
+
 	function NomorRegistrasiSama($nomor_registrasi)
 	{
 
