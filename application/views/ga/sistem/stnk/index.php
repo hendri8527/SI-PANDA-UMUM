@@ -55,12 +55,12 @@
 							<th>No</th>
 							<th>Plat Nomor</th>
 							<th>Merk</th>
-							<th>Nomor Mesin</th>
 							<th>Nominal Pajak</th>
 							<th>Nama Pemilik</th>
 							<th>Alamat</th>
 							<th>Tahun Registrasi</th>
 							<th>Berlaku S/d</th>
+							<th>Status</th>
 							<th>Foto Kendaraan</th>
 							<th>Action</th>
 
@@ -71,17 +71,42 @@
 						<?php
 						$no = 1;
 						if ($data_stnk->num_rows() > 0) {
-							foreach ($data_stnk->result_array() as $tampil) { ?>
+							foreach ($data_stnk->result_array() as $tampil) {
+								$masaBerlaku  = "";
+								$berlakuSampai = $tampil['berlaku_sampai'];
+								$sekarang = date('Y-m-d');
+								$SebelumJatuhTempo1Bulan  = date("Y-m-d", strtotime('-30 days', strtotime($berlakuSampai)));
+								$SebelumJatuhTempo2Minggu = date("Y-m-d", strtotime('-14 days', strtotime($berlakuSampai)));
+								$SebelumJatuhTempo1Minggu = date("Y-m-d", strtotime('-7 days', strtotime($berlakuSampai)));
+
+								if ($sekarang == $SebelumJatuhTempo) {
+									$masaBerlaku = 'Kurang 1 Bulan Jatuh Tempo';
+								} elseif ($sekarang == $SebelumJatuhTempo2Minggu) {
+									$masaBerlaku = "Kurang 2 Minggu Jatuh Tempo";
+								} elseif ($sekarang == $SebelumJatuhTempo1Minggu) {
+									$masaBerlaku = "Kurang 1 Minggu Jatuh Tempo";
+								} elseif (strtotime($berlakuSampai) <=  strtotime($sekarang)) {
+									$JatuhTempo = new DateTime($berlakuSampai);
+									$hariIni = new DateTime($sekarang);
+									$diff = $hariIni->diff($JatuhTempo);
+									$masaBerlaku = "Terlambat " . $diff->days . " Hari";
+									if ($diff->days == 0) {
+										$masaBerlaku = "Hari ini Terakhir";
+									}
+								} else {
+									$masaBerlaku = "Masih Berlaku";
+								}
+						?>
 								<tr>
 									<td><?php echo $no; ?></td>
 									<td><?php echo $tampil['nomor_registrasi']; ?></td>
 									<td><?php echo $tampil['merk']; ?></td>
-									<td><?php echo $tampil['nomor_mesin']; ?></td>
-									<td><?php echo $tampil['nominal']; ?></td>
+									<td><?php echo "Rp " . number_format($tampil['nominal']); ?> </td>
 									<td><?php echo $tampil['nama_pemilik']; ?></td>
 									<td><?php echo $tampil['alamat']; ?></td>
 									<td><?php echo $tampil['tahun_pembuatan']; ?></td>
-									<td><?php echo $tampil['berlaku_sampai']; ?></td>
+									<td><?php echo date('d F Y', strtotime($berlakuSampai)); ?></td>
+									<td><?php echo $masaBerlaku; ?></td>
 									<td><a href="<?= base_url() . 'assets/img/gambar_kendaraan/' . $tampil['gambar_kendaraan']; ?>" target="_blank"><img src="<?= base_url() . 'assets/img/gambar_kendaraan/' . $tampil['gambar_kendaraan']; ?>" width="200"></a></td>
 
 

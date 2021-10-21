@@ -106,7 +106,7 @@
 						<div class="control-group">
 							<label class="control-label">Nominal Pajak</label>
 							<div class="controls">
-								<input type="text" name="nominal" id="nominal" class="span6 m-wrap" value="<?php echo $nominal; ?>" />
+								<input type="text" name="nominal" id="nominal" class="span6 m-wrap" value="<?php echo number_format($nominal, 2, ",", "."); ?>" />
 							</div>
 						</div>
 
@@ -283,6 +283,36 @@
 
 
 	<script type="text/javascript">
+		$(function() {
+			$("#nominal").keyup(function(e) {
+				$(this).val(format($(this).val()));
+			});
+		});
+
+
+		var format = function(num) {
+			var str = num.toString().replace("", ""),
+				parts = false,
+				output = [],
+				i = 1,
+				formatted = null;
+			if (str.indexOf(".") > 0) {
+				parts = str.split(".");
+				str = parts[0];
+			}
+			str = str.split("").reverse();
+			for (var j = 0, len = str.length; j < len; j++) {
+				if (str[j] != ",") {
+					output.push(str[j]);
+					if (i % 3 == 0 && j < (len - 1)) {
+						output.push(",");
+					}
+					i++;
+				}
+			}
+			formatted = output.reverse().join("");
+			return ("" + formatted + ((parts) ? "." + parts[1].substr(0, 2) : ""));
+		};
 		$(document).ready(function() {
 
 			$('#ga_master_lising_id').focus();

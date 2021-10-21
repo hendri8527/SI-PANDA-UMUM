@@ -29,6 +29,7 @@ class ga extends CI_Controller
 
 
 		$data['data_stnk'] = $this->ga_model->GetStnk();
+
 		$this->template_dua->load('template_dua', 'ga/sistem/stnk/index', $data);
 	}
 
@@ -71,6 +72,10 @@ class ga extends CI_Controller
 
 			$nomor_registrasi = $this->input->post("nomor_registrasi");
 			$cek = $this->ga_model->NomorRegistrasiSama($nomor_registrasi);
+			$nominal = preg_replace("/[^0-9]/", "", $this->input->post('nominal'));
+
+			$nominal_int = (int) $nominal;
+
 
 			if ($cek->num_rows() > 0) {
 
@@ -106,8 +111,8 @@ class ga extends CI_Controller
 					// $in_data['box'] 					= $this->input->post('box');
 					$in_data['nomor_kontrak'] 			= $this->input->post('nomor_kontrak');
 					$in_data['nomor_lambung'] 			= $this->input->post('nomor_lambung');
-					$in_data['komersil'] 				= $this->input->post('komersil');
-					$in_data['nominal'] 				= $this->input->post('nominal');
+
+					$in_data['nominal'] 				= $nominal_int;
 					$in_data['nip']					= $this->input->post('nip');
 					$in_data['unit_kerja']			= $this->input->post('unit_kerja');
 					$upload_data = $this->upload->data();
@@ -155,7 +160,7 @@ class ga extends CI_Controller
 			// $data['box'] 					= $value['box'];
 			$data['nomor_kontrak'] 			= $value['nomor_kontrak'];
 			$data['nomor_lambung'] 			= $value['nomor_lambung'];
-			$data['komersil'] 				= $value['komersil'];
+
 			$data['nominal'] 				= $value['nominal'];
 			$data['gambar_kendaraan']		= $value['gambar_kendaraan'];
 		}
@@ -176,6 +181,9 @@ class ga extends CI_Controller
 			var_dump($error);
 		} else {
 			$id['id_ga_stnk'] = $this->input->post("id_ga_stnk");
+			$nominal = preg_replace("/[^0-9]/", "", $this->input->post('nominal'));
+
+			$nominal_int = (int) $nominal;
 
 			$in_data['nomor_registrasi'] 		= $this->input->post('nomor_registrasi');
 			$in_data['nama_pemilik'] 			= $this->input->post('nama_pemilik');
@@ -201,8 +209,8 @@ class ga extends CI_Controller
 			// $in_data['box'] 				= $this->input->post('box');
 			$in_data['nomor_kontrak'] 			= $this->input->post('nomor_kontrak');
 			$in_data['nomor_lambung'] 			= $this->input->post('nomor_lambung');
-			$in_data['komersil'] 				= $this->input->post('komersil');
-			$in_data['nominal'] 				= $this->input->post('nominal');
+
+			$in_data['nominal'] 				= $nominal;
 			$upload_data = $this->upload->data();
 			$in_data['gambar_kendaraan']		= $upload_data['file_name'];
 
