@@ -172,56 +172,61 @@ class ga extends CI_Controller
 
 	public function stnk_update()
 	{
+
 		$config['upload_path']          = APPPATH . '../assets/img/gambar_kendaraan';
 		$config['allowed_types']        = 'gif|jpg|jpeg|png';
 		$config['max_size']             = 300;
 		$this->load->library('upload', $config);
-		if (!$this->upload->do_upload('gambar_kendaraan')) {
-			$error = array('error' => $this->upload->display_errors());
-			var_dump($error);
+
+		$id['id_ga_stnk'] = $this->input->post("id_ga_stnk");
+		$nominal = preg_replace("/[^0-9]/", "", $this->input->post('nominal'));
+
+		$nominal_int = (int) $nominal;
+
+		$in_data['nomor_registrasi'] 		= $this->input->post('nomor_registrasi');
+		$in_data['nama_pemilik'] 			= $this->input->post('nama_pemilik');
+		$in_data['alamat'] 					= $this->input->post('alamat');
+		$in_data['merk'] 					= $this->input->post('merk');
+		$in_data['type'] 					= $this->input->post('type');
+		$in_data['jenis'] 					= $this->input->post('jenis');
+		$in_data['model'] 					= $this->input->post('model');
+		$in_data['tahun_pembuatan'] 		= $this->input->post('tahun_pembuatan');
+		$in_data['isi_silinder'] 			= $this->input->post('isi_silinder');
+		$in_data['nomor_rangka'] 			= $this->input->post('nomor_rangka');
+		$in_data['nomor_mesin'] 			= $this->input->post('nomor_mesin');
+		$in_data['warna'] 					= $this->input->post('warna');
+		$in_data['bahan_bakar'] 			= $this->input->post('bahan_bakar');
+		$in_data['warna_tnkb'] 				= $this->input->post('warna_tnkb');
+		$in_data['tahun_registrasi'] 		= $this->input->post('tahun_registrasi');
+		$in_data['nomor_bpkb'] 				= $this->input->post('nomor_bpkb');
+		$in_data['kode_lokasi'] 			= $this->input->post('kode_lokasi');
+		$in_data['no_urut_pendaftaran'] 	= $this->input->post('no_urut_pendaftaran');
+		$in_data['berlaku_sampai'] 			= $this->input->post('berlaku_sampai');
+		$in_data['status_kendaraan'] 		= $this->input->post('status_kendaraan');
+		$in_data['lokasi'] 					= $this->input->post('lokasi');
+		// $in_data['box'] 				= $this->input->post('box');
+		$in_data['nomor_kontrak'] 			= $this->input->post('nomor_kontrak');
+		$in_data['nomor_lambung'] 			= $this->input->post('nomor_lambung');
+
+		$in_data['nominal'] 				= $nominal;
+		$in_data['gambar_kendaraan'] = "";
+
+
+		if ($in_data['gambar_kendaraan'] == null) {
+
+			$in_data['gambar_kendaraan'] =  $this->input->post('gambar_kendaraan2');
+			$this->db->update("tbl_ga_stnk", $in_data, $id);
 		} else {
-			$id['id_ga_stnk'] = $this->input->post("id_ga_stnk");
-			$nominal = preg_replace("/[^0-9]/", "", $this->input->post('nominal'));
-
-			$nominal_int = (int) $nominal;
-
-			$in_data['nomor_registrasi'] 		= $this->input->post('nomor_registrasi');
-			$in_data['nama_pemilik'] 			= $this->input->post('nama_pemilik');
-			$in_data['alamat'] 					= $this->input->post('alamat');
-			$in_data['merk'] 					= $this->input->post('merk');
-			$in_data['type'] 					= $this->input->post('type');
-			$in_data['jenis'] 					= $this->input->post('jenis');
-			$in_data['model'] 					= $this->input->post('model');
-			$in_data['tahun_pembuatan'] 		= $this->input->post('tahun_pembuatan');
-			$in_data['isi_silinder'] 			= $this->input->post('isi_silinder');
-			$in_data['nomor_rangka'] 			= $this->input->post('nomor_rangka');
-			$in_data['nomor_mesin'] 			= $this->input->post('nomor_mesin');
-			$in_data['warna'] 					= $this->input->post('warna');
-			$in_data['bahan_bakar'] 			= $this->input->post('bahan_bakar');
-			$in_data['warna_tnkb'] 				= $this->input->post('warna_tnkb');
-			$in_data['tahun_registrasi'] 		= $this->input->post('tahun_registrasi');
-			$in_data['nomor_bpkb'] 				= $this->input->post('nomor_bpkb');
-			$in_data['kode_lokasi'] 			= $this->input->post('kode_lokasi');
-			$in_data['no_urut_pendaftaran'] 	= $this->input->post('no_urut_pendaftaran');
-			$in_data['berlaku_sampai'] 			= $this->input->post('berlaku_sampai');
-			$in_data['status_kendaraan'] 		= $this->input->post('status_kendaraan');
-			$in_data['lokasi'] 					= $this->input->post('lokasi');
-			// $in_data['box'] 				= $this->input->post('box');
-			$in_data['nomor_kontrak'] 			= $this->input->post('nomor_kontrak');
-			$in_data['nomor_lambung'] 			= $this->input->post('nomor_lambung');
-
-			$in_data['nominal'] 				= $nominal;
 			$upload_data = $this->upload->data();
 			$in_data['gambar_kendaraan']		= $upload_data['file_name'];
-
-
 			$this->db->update("tbl_ga_stnk", $in_data, $id);
-
-
-
-			$this->session->set_flashdata('update', 'STNK Berhasil Diupdate');
-			redirect("ga/stnk");
 		}
+
+
+
+
+		$this->session->set_flashdata('update', 'STNK Berhasil Diupdate');
+		redirect("ga/stnk");
 	}
 
 	public function stnk_detail()

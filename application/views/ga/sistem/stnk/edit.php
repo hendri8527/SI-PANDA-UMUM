@@ -259,7 +259,17 @@
 						<div class="control-group">
 							<label class="control-label">Foto Kendaraan</label>
 							<div class="controls">
-								<input type="file" name="gambar_kendaraan" id="gambar_kendaraan" class="span6 m-wrap" value="<?= base_url() . 'assets/img/gambar_kendaraan/' . $gambar_kendaraan ?>" />
+								<?php
+								if ($gambar_kendaraan !== null) { ?>
+									<div class="control-group">
+										<img src="<?= base_url() . 'assets/img/gambar_kendaraan/' . $gambar_kendaraan; ?>" width="200">
+									</div>
+								<?php
+								} ?>
+							</div>
+							<div class="controls">
+								<input type="file" name="gambar_kendaraan" id="gambar_kendaraan" class="span6 m-wrap" />
+								<input type="hidden" name="gambar_kendaraan2" id="" value="<?= $gambar_kendaraan; ?>">
 							</div>
 						</div>
 
