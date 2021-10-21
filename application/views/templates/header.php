@@ -18,6 +18,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
     <!-- Custom styles for this template -->
     <link href="<?php print HTTP_CSS_PATH; ?>style.css" rel="stylesheet">
+
+
 </head>
 
 <body>
