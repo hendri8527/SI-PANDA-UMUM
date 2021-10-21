@@ -59,7 +59,8 @@
 
                 <form action="<?php echo base_url(); ?>loginMe" method="post" class="login100-form validate-form">
                     <span class="login100-form-title">
-                        Aplikasi Si-PANDA (Bagian Umum-Sekretariat Daerah)
+                        Aplikasi Si-PANDA <br>
+                        <h5>Bagian Umum</h5>
                     </span>
 
                     <div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
