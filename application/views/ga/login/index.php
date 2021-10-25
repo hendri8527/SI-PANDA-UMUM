@@ -59,14 +59,15 @@
 
                 <form action="<?php echo base_url(); ?>loginMe" method="post" class="login100-form validate-form">
                     <span class="login100-form-title">
-                        Aplikasi Si-PANDA PERUBAHAN KE 2
+                        Aplikasi Si-PANDA <br>
+                        <h5>Bagian Umum</h5>
                     </span>
 
-                    <div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
-                        <input class="input100" type="email" name="email" placeholder="Email" required>
+                    <div class="wrap-input100 validate-input" data-validate="Valid Username ">
+                        <input class="input100" type="text" name="username" placeholder="Username" required>
                         <span class="focus-input100"></span>
                         <span class="symbol-input100">
-                            <i class="fa fa-envelope" aria-hidden="true"></i>
+                            <i class="fa fa-user" aria-hidden="true"></i>
                         </span>
                     </div>
 

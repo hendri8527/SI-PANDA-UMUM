@@ -2,13 +2,14 @@
 
 class ga_model extends CI_Model
 {
+	const SESSION_KEY = 'user_id';
 
-	function loginMe($email, $password)
+	function loginMe($username, $password)
 	{
 		$this->db->select('BaseTbl.userId, BaseTbl.password, BaseTbl.name, BaseTbl.roleId, Roles.role');
 		$this->db->from('tbl_users as BaseTbl');
 		$this->db->join('tbl_roles as Roles', 'Roles.roleId = BaseTbl.roleId');
-		$this->db->where('BaseTbl.email', $email);
+		$this->db->where('BaseTbl.name', $username);
 		$this->db->where('BaseTbl.isDeleted', 0);
 		$query = $this->db->get();
 
@@ -24,6 +25,17 @@ class ga_model extends CI_Model
 			return array();
 		}
 	}
+
+	// public function current_user()
+	// {
+	// 	if (!$this->session->has_userdata(self::SESSION_KEY)) {
+	// 		return null;
+	// 	}
+
+	// 	$user_id = $this->session->userdata(self::SESSION_KEY);
+	// 	$query = $this->db->get_where($this->_table, ['id' => $user_id]);
+	// 	return $query->row();
+	// }
 
 	//Awal STNK
 
@@ -47,6 +59,8 @@ class ga_model extends CI_Model
 	{
 		return $this->db->query("delete from tbl_ga_stnk where id_ga_stnk='$id_ga_stnk'");
 	}
+
+
 
 	function NomorRegistrasiSama($nomor_registrasi)
 	{
